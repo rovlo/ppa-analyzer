@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/device_name_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown_device"
+        app:layout_constraintBottom_toTopOf="@id/readout_LineChart"
+        app:layout_constraintEnd_toStartOf="@+id/connection_state_TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/connection_state_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/disconnected"
+        app:layout_constraintBottom_toTopOf="@id/readout_LineChart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/device_name_TextView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/readout_LineChart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/data_value_TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/device_name_TextView" />
+
+    <TextView
+        android:id="@+id/data_value_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toTopOf="@id/sampleRate_TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/readout_LineChart"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <TextView
+        android:id="@+id/vds_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:gravity="right"
+        app:layout_constraintBottom_toTopOf="@id/vcg_TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/data_value_TextView"
+        app:layout_constraintTop_toBottomOf="@id/readout_LineChart"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <TextView
+        android:id="@+id/vcg_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:gravity="right"
+        app:layout_constraintBottom_toTopOf="@id/sampleRate_TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/data_value_TextView"
+        app:layout_constraintTop_toBottomOf="@id/vds_TextView"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <TextView
+        android:id="@+id/sampleRate_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/sampleRate_SeekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vds_TextView" />
+
+    <SeekBar
+        android:id="@+id/sampleRate_SeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:padding='10dp'
+        android:max="100"
+        android:progress="20"
+        app:layout_constraintBottom_toTopOf="@id/vds_EditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sampleRate_TextView" />
+
+    <EditText
+        android:id="@+id/vds_EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@id/vcg_EditText"
+        app:layout_constraintEnd_toStartOf="@id/vds_Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sampleRate_SeekBar" />
+
+    <Button
+        android:id="@+id/vds_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set DUT voltage"
+        app:layout_constraintBottom_toBottomOf="@id/vds_EditText"
+        app:layout_constraintEnd_toStartOf="@id/res_header"
+        app:layout_constraintStart_toEndOf="@id/vds_EditText"
+        app:layout_constraintTop_toTopOf="@id/vds_EditText" />
+
+    <EditText
+        android:id="@+id/vcg_EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@id/start_Button"
+        app:layout_constraintEnd_toStartOf="@id/vcg_Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vds_EditText" />
+
+
+    <Button
+        android:id="@+id/vcg_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set CG voltage"
+        app:layout_constraintBottom_toBottomOf="@id/vcg_EditText"
+        app:layout_constraintEnd_toStartOf="@id/res_header"
+        app:layout_constraintStart_toEndOf="@id/vcg_EditText"
+        app:layout_constraintTop_toTopOf="@id/vcg_EditText" />
+    <!--
+        <EditText
+            android:id="@+id/res_EditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            app:layout_constraintBottom_toTopOf="@id/start_Button"
+            app:layout_constraintEnd_toStartOf="@id/res_Button"
+            app:layout_constraintStart_toEndOf="@id/vds_Button"
+            app:layout_constraintTop_toBottomOf="@id/sampleRate_SeekBar" />
+    -->
+    <TextView
+        android:id="@+id/res_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Sense Resistor"
+        app:layout_constraintBottom_toTopOf="@id/res_RadioGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/vcg_Button"
+        app:layout_constraintTop_toBottomOf="@id/sampleRate_SeekBar" />
+
+    <RadioGroup
+        android:id="@+id/res_RadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:text="Set resistance"
+        app:layout_constraintBottom_toTopOf="@id/start_Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/vcg_Button"
+        app:layout_constraintTop_toBottomOf="@id/res_header"
+        >
+
+        <RadioButton
+            android:id="@+id/res1_radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="1kΩ"
+            />
+
+        <RadioButton
+            android:id="@+id/res2_radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="10kΩ" />
+
+        <RadioButton
+            android:id="@+id/res3_radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="50kΩ" />
+
+        <RadioButton
+            android:id="@+id/res4_radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="100kΩ" />
+
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/start_Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Start monitoring"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vcg_Button"
+        app:layout_constraintWidth_percent="0.5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
