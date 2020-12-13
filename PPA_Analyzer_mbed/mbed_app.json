@@ -1,0 +1,94 @@
+{
+    "config": {
+        "ble_button_pin_name": {
+            "help": "The pin name used as button in this application",
+            "value": "BUTTON1",
+            "macro_name": "BLE_BUTTON_PIN_NAME",
+            "required": true
+        },
+        "ble_button_pin_pull": {
+            "help": "The BLE button may need a pull-up. Possible values are PullUp, PullDown, PullNone (default).",
+            "macro_name": "BLE_BUTTON_PIN_PULL",
+            "value": "PullNone"
+        },
+        "aws-endpoint": {
+            "help": "Endpoint name",
+            "value": "\"a2rwvdv9c2khqd-ats.iot.us-east-2.amazonaws.com\""
+        },
+        "aws-mqtt-topic": {
+            "help": "Topic to subscribe & publish to",
+            "value": "\"sdkTest/sub\""
+        },
+        "aws-client-identifier": {
+            "help": "uniq id for this thing",
+            "value": "\"PPA_BLE_over_MQTT\""
+        }
+    },
+    "target_overrides": {
+        "K64F": {
+            "target.components_add": ["BlueNRG_MS"],
+            "target.features_add": ["BLE"],
+            "target.extra_labels_add": ["CORDIO"],
+            "ble_button_pin_name": "SW2"
+        },
+        "NUCLEO_F401RE": {
+            "target.components_add": ["BlueNRG_MS"],
+            "target.features_add": ["BLE"],
+            "target.extra_labels_add": ["CORDIO"]
+        },
+        "NUCLEO_WB55RG": {
+            "ble_button_pin_pull": "PullUp"
+        },
+        "NRF52840_DK": {
+            "target.features_add": ["BLE"],
+            "ble_button_pin_pull": "PullUp"
+        },
+        "NRF52_DK": {
+            "target.features_add": ["BLE"]
+        },
+        "*": {
+            "target.printf_lib": "std",
+            "mbed-trace.enable": true,
+            "mbed-trace.max-level": "TRACE_LEVEL_INFO",
+            "aws-client.log-puts": "aws_iot_puts",
+            "aws-client.log-level-global": "IOT_LOG_INFO",
+            "rtos.main-thread-stack-size": 8192,
+            "rtos.thread-stack-size": 2048,
+            "platform.error-filename-capture-enabled": true,
+            "platform.stdio-convert-newlines": true,
+            "platform.stdio-baud-rate": 9600,
+            "sd.SPI_MOSI" : "D11",
+            "sd.SPI_CLK" : "D13",
+            "sd.SPI_MISO" : "D12",
+            "sd.SPI_CS" : "D9"
+        },
+        "DISCO_L475VG_IOT01A": {
+            "target.network-default-interface-type": "WIFI",
+            "nsapi.default-wifi-security": "WPA_WPA2",
+            "nsapi.default-wifi-ssid": "\"STM32_AWS_Test\"",
+            "nsapi.default-wifi-password": "\"password\"",
+            "target.components_add": ["BlueNRG_MS", "SD"],
+            "target.features_add": ["BLE"],
+            "target.extra_labels_add": ["CORDIO"]
+        },
+        "EP_AGORA": {
+            "ble_button_pin_name": "PIN_NAME_PUSH_BUTTON",
+            "target.macros_add":   ["NRFX_GPIOTE_CONFIG_NUM_OF_LOW_POWER_EVENTS=4"],
+            "platform.stdio-buffered-serial"            : true,
+            "platform.stdio-flush-at-exit"              : true,
+            "drivers.uart-serial-rxbuf-size"            : 1024,
+            "drivers.uart-serial-txbuf-size"            : 1024,
+            "lwip.ipv4-enabled"                         : true,
+            "lwip.ipv6-enabled"                         : true,
+            "lwip.ppp-enabled"                          : true,
+            "lwip.tcp-enabled"                          : true,
+            "lwip.ethernet-enabled"                     : false,
+            "lwip.mem-size"                             : 22000,
+            "lwip.tcpip-thread-stacksize"               : 2000,
+            "nsapi.dns-response-wait-time"              : 30000,
+            "nsapi.default-cellular-apn"                : "\"phone\"",
+            "lwip.use-mbed-trace"                       : true,
+            "lwip.debug-enabled"                        : false
+        }
+    }
+}
